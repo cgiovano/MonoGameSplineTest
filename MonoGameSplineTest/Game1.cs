@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace MonoGameSplineTest
 {
+    // Point2D type that stores 2 coordinates.
     struct Point2D
     {
         public int x;
@@ -24,9 +25,6 @@ namespace MonoGameSplineTest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Spline path;
-
-        List<Point2D> points;
         Texture2D lineTex;
         Texture2D cpTex;
         Spline spline;
@@ -59,48 +57,16 @@ namespace MonoGameSplineTest
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var p0 = new Point2D();
-            p0.x = 100;
-            p0.y = 100;
-
-            var p1 = new Point2D();
-            p1.x = 200;
-            p1.y = 200;
-
-            var p2 = new Point2D();
-            p2.x = 300;
-            p2.y = 300;
-
-            var p3 = new Point2D();
-            p3.x = 400;
-            p3.y = 400;
-
-            var p4 = new Point2D();
-            p4.x = 500;
-            p4.y = 100;
-
-            var p5 = new Point2D();
-            p5.x = 600;
-            p5.y = 100;
-
-            //var p0 = new Point2D();
-            //p0.x = 100;
-            //p0.y = 100;
-
-            points = new List<Point2D>();
-            points.Add(p0);
-            points.Add(p1);
-            points.Add(p2);
-            points.Add(p3);
-            points.Add(p4);
-            points.Add(p5);
-
             // TODO: use this.Content to load your game content here
             cpTex = Content.Load<Texture2D>("ControlPoint");
             lineTex = Content.Load<Texture2D>("LinePoint");
 
+            // The list with the points and the current position of each one.
+            Point2D[] points = new Point2D[]{new Point2D(50, 200), new Point2D(100, 200), new Point2D(150, 200), new Point2D(200, 200), new Point2D(250, 200),
+                      new Point2D(300, 200), new Point2D(350, 200), new Point2D(400, 200), new Point2D(450, 200), new Point2D(500, 200) };
 
-            spline = new Spline(points.ToArray(), cpTex, lineTex);
+            // creates our Spline passing our control point list and the textures for our control points and line points.
+            spline = new Spline(points, cpTex, lineTex);
         }
 
         /// <summary>
